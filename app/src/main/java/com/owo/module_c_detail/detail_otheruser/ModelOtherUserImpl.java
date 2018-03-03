@@ -21,6 +21,7 @@ public class ModelOtherUserImpl implements  ModelOtherUser {
             public void run() {
                 try {
                     String jsonResultData = HttpHelper.postData(MyURL.GET_SUMIFOLLOWED__BY_FID, map, null);
+                    System.out.println("关注:"+jsonResultData);
                     listener.onSucess(jsonResultData);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -38,6 +39,7 @@ public class ModelOtherUserImpl implements  ModelOtherUser {
             public void run() {
                 try {
                     String jsonResultData = HttpHelper.postData(MyURL.GET_SUMFOLLOW_ME__BY_FID, map, null);
+                    System.out.println("粉丝:"+jsonResultData);
                     listener.onSucess(jsonResultData);
                 } catch (Exception e) {
                     e.printStackTrace();

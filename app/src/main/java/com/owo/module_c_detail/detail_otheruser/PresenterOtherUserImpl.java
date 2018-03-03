@@ -38,6 +38,7 @@ public class PresenterOtherUserImpl implements  PresenterOtherUser{
             public void onSucess(String string) {
                 try {
                     int result = HttpHelper.AJSumFollow(string);
+                    System.out.println("loadSumUserFollowedByUserId 关注:"+result+" data:"+string);
                     viewFragOtherUser.getSumIFoloowed(result);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -55,7 +56,9 @@ public class PresenterOtherUserImpl implements  PresenterOtherUser{
             @Override
             public void onSucess(String string) {
                 try {
+
                     int result = HttpHelper.AJSumFollow(string);
+                    System.out.println("loadSumUserFollowMeByUserId 粉丝:"+result+" data:"+string);
                     viewFragOtherUser.getSumFollowMe(result);
                 } catch (JSONException e) {
                     e.printStackTrace();

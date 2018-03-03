@@ -980,7 +980,9 @@ public class HttpHelper {
     public static int AJSumFollow(String string) throws JSONException {
         int result = -1;
         if (getCode(string) == 200) {
+
             result = (Integer) AnalysisData(string);
+            System.out.println("AJSumFollow--data:"+string+"  result:"+result);
         }
         return result;
     }

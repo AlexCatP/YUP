@@ -1,5 +1,7 @@
 package com.owo.module_a_login.widgets;
 
+//////////////////////////////////////////////////////////
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -124,7 +126,8 @@ public class FragLoginOrRegister extends FragBase implements ViewLogin {
             if (!Common.isNetworkAvailable(getActivity())) {
                 Common.display(getActivity(), "检查手机网络设置！");
             } else {
-                if (intentStr == null) {//不是由其他界面跳转过来的，检查是不是有本地信息的id，要是有则直接进行跳转，要是没有，等待用户按下登陆键
+                if (intentStr == null) {//不是由其他界面跳转过来的，检查是不是有本地信息的id，
+                    // 要是有则直接进行跳转，要是没有，等待用户按下登陆键
                     mUserId = Common.userSP.getInt("ID", 0);
                     mPresenterLogin.loadUserById(mUserId,getContext());
                     if (mUserId != 0 && mBeanUser != null) {
@@ -300,7 +303,6 @@ public class FragLoginOrRegister extends FragBase implements ViewLogin {
     public void handleUserInfo() {
 
         Common.userSP = getContext().getSharedPreferences("userSP", 0);
-
         SharedPreferences.Editor editor = Common.userSP.edit();
         editor.putInt("ID", mUserId);
         editor.commit();

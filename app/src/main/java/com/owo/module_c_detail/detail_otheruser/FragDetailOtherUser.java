@@ -409,6 +409,8 @@ public class FragDetailOtherUser extends FragBase implements ViewFragOtherUser{
                                 if (HttpHelper.getCode(insertFriend(friendID)) == 200) {
                                     //成功-->翻页
                                     Common.display(getContext(), "关注成功");
+                                    if (mBeanUser!=null)
+                                        presenterOtherUser.loadSumUserFollowMeByUserId(mBeanUser.getId());
                                     JMessageClient.createSingleTextMessage("yup_"+mBeanUser.getId(), "4d454221295c35af705cc26e", "Hello~ 我关注你啦！\n" +
                                             "(点我头像加好友)");
                                 }
@@ -446,13 +448,18 @@ public class FragDetailOtherUser extends FragBase implements ViewFragOtherUser{
 
     @Override
     public void getSumIFoloowed(int sum) {
+        System.out.println("关注被设置为:"+sum);
         followed = sum;
+        mTextViewUserFollowedSum.setText(followed + "");
+
+
     }
 
     @Override
     public void getSumFollowMe(int sum) {
+        System.out.println("粉丝被设置为:"+sum);
         follow = sum;
-
+        mTextViewUserFollowMeSum.setText(follow + "");
     }
 
     @Override
@@ -594,8 +601,9 @@ public class FragDetailOtherUser extends FragBase implements ViewFragOtherUser{
 
 
 
-
+                    System.out.println("关注和粉丝设置");
                     mTextViewUserFollowedSum.setText(followed + "");
+
                     mTextViewUserFollowMeSum.setText(follow + "");
 
 

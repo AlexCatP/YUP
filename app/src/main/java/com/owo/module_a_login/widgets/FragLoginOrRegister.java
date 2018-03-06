@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baidu.platform.comjni.map.commonmemcache.JNICommonMemCache;
+import com.owo.utils.EncodeAndDecode;
+import com.owo.utils.UtilLog;
 import com.owo.utils.util_http.MyURL;
 import com.wao.dogcat.R;
 import com.owo.base.FragBase;
@@ -214,6 +216,7 @@ public class FragLoginOrRegister extends FragBase implements ViewLogin {
 
     public void afterGetResultLogin() {
         try {
+            UtilLog.i("ChangePassWordActivity:","String:"+mResultLogin+" code:"+code);
             Object data = HttpHelper.AnalysisData(mResultLogin);
             if (data != null) {
                 mUserId = (int) data;
@@ -241,6 +244,7 @@ public class FragLoginOrRegister extends FragBase implements ViewLogin {
 
     public void afterGetUser() {
         if (mBeanUser != null) {
+            Common.userID = mUserId;
             jpushUpdate();
             handleUserInfo();
             loginIM("yup_"+mUserId, mBeanUser.getPassWord(), getActivity());
@@ -276,6 +280,7 @@ public class FragLoginOrRegister extends FragBase implements ViewLogin {
         JMessageClient.login(username, password, new BasicCallback() {
             @Override
             public void gotResult(final int status, final String desc) {
+                UtilLog.i("ChangePassWordActivity:","longIM_status:"+status);
                 if (status == 0) {
                     String username = JMessageClient.getMyInfo().getUserName();
                     String appKey = JMessageClient.getMyInfo().getAppKey();
